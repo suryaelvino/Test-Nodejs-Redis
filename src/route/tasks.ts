@@ -1,12 +1,12 @@
-import { Router } from 'express';
-import { createTask, getAllTasks, getTaskById, updateTaskById, deleteTaskById } from '../controller/tasksController';
+import express from 'express';
+import * as tasks from '../controller/tasksController';
 
-const router: Router = Router();
+const router = express.Router();
 
-router.post('/', createTask);
-router.get('/', getAllTasks);
-router.get('/:id', getTaskById);
-router.put('/:id', updateTaskById);
-router.delete('/:id', deleteTaskById);
+router.post('/tasks', tasks.createTask);
+router.get('/tasks', tasks.getAllTasks);
+router.get('/tasks/:id', tasks.getTaskById);
+router.put('/tasks/:id', tasks.updateTaskById);
+router.delete('/tasks/:id', tasks.deleteTaskById);
 
 export default router;
