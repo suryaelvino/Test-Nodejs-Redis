@@ -1,6 +1,7 @@
 import express, { Request, Response, NextFunction } from 'express';
 import bodyParser from 'body-parser';
 import router from './route/tasks';
+import { initRedisClient } from './redis/redis';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -13,10 +14,7 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
     res.status(500).send({ error: 'Something went wrong!' });
 });
 
-app.get('/', (req: Request, res: Response) => {
-    res.send('Server is running');
-});
-
+initRedisClient();
 
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
