@@ -2,12 +2,14 @@ import express, { Request, Response, NextFunction } from 'express';
 import bodyParser from 'body-parser';
 import router from './route/tasks';
 import { initRedisClient } from './redis/redis';
+import cors from 'cors';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
 app.use(router);
+app.use(cors());
 
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
     console.error(err.stack);
